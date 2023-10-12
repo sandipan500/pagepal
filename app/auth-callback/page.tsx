@@ -1,5 +1,9 @@
+'use client';
+
 import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
+
 import { trpc } from '../_trpc/client';
 
 const AuthCallback = () => {
@@ -11,7 +15,7 @@ const AuthCallback = () => {
   trpc.authCallback.useQuery(undefined, {
     onSuccess: ({ success }) => {
       if (success) {
-        router.push(origin ? `/${origin}` : '/database')
+        router.push(origin ? `/${origin}` : '/dashboard')
       }
     },
     onError: (err) => {
@@ -24,7 +28,15 @@ const AuthCallback = () => {
   })
 
   return (
-    <div>AuthCallback</div>
+    <div className='flex w-full mt-24 justify-center'>
+      <div className='flex flex-col items-center gap-2'>
+        <Loader2 className='h-8 w-8 animate-spin text-zinc-800' />
+        <h3 className='font-semibold text-xl'>
+          Setting up your account...
+        </h3>
+        <p>You will be redirected automatically</p>
+      </div>
+    </div>
   )
 };
 
