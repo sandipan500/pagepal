@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Wrapper from '@/components/Wrapper';
 import { buttonVariants } from '@/components/ui/button';
 
-const Home = () => {
+const Page = () => {
   return (
     <>
       <Wrapper className='flex flex-col mb-12 mt-28 sm:mt-40 items-center justify-center text-center'>
@@ -154,4 +154,4 @@ const Home = () => {
   )
 };
 
-export default Home;
+export default Page;
