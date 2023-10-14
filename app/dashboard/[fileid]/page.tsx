@@ -3,6 +3,8 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { notFound, redirect } from 'next/navigation';
 
 import { db } from '@/db';
+import Renderer from '@/components/Renderer';
+import ChatWrapper from '@/components/ChatWrapper';
 
 interface PageProps {
   params: {
@@ -29,7 +31,17 @@ const Page = async ({params}: PageProps) => {
 
   return (
     <div className='flex flex-col flex-1 justify-between h-[calc(100vh-3.5rem)]'>
-      <div className='mx-auto w-full max-w-8xl grow lg:flex xl:px-2'></div>
+      <div className='mx-auto w-full max-w-8xl grow lg:flex xl:px-2'>
+        <div>
+          <div>
+            <Renderer />
+          </div>
+        </div>
+
+        <div>
+          <ChatWrapper />
+        </div>
+      </div>
     </div>
   )
 };
