@@ -38,23 +38,23 @@ const Dashboard = () => {
       </div>
 
       {files && files?.length !== 0 ? (
-        <ul>
+        <ul className='mt-8 grid grid-cols-1 gap-6 divide-y divide-zinc-200 md:grid-cols-2 lg:grid-cols-3'>
           {files.sort(
             (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           ).map((file) => (
             <li
               key={file.id}
-              className=''
+              className='col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg'
             >
               <Link
                 href={`/dashboard/${file.id}`}
-                className=''
+                className='flex flex-col gap-2'
               >
-                <div className=''>
-                  <div className='' />
-                  <div className=''>
-                    <div className=''>
-                      <h3 className=''>
+                <div className='flex w-full px-6 pt-6 items-center justify-between space-x-6'>
+                  <div className='flex-shrink-0 rounded-full h-10 w-10 bg-gradient-to-r from-purple-500 to to-violet-500' />
+                  <div className='flex-1 truncate'>
+                    <div className='flex items-center space-x-3'>
+                      <h3 className='truncate text-lg font-medium text-zinc-900'>
                         {file.name}
                       </h3>
                     </div>
@@ -62,27 +62,27 @@ const Dashboard = () => {
                 </div>
               </Link>
 
-              <div className=''>
-                <div className=''>
-                  <Plus className='' />
+              <div className='px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500'>
+                <div className='flex items-center gap-2'>
+                  <Plus className='h-4 w-4' />
                   {format(new Date(file.createdAt),'MM yyyy')}
                 </div>
 
-                <div className=''>
-                  <MessageSquare className='' />
+                <div className='flex items-center gap-2'>
+                  <MessageSquare className='h-4 w-4' />
                   Mocked
                 </div>
 
                 <Button
                   onClick={() => deleteFile({ id: file.id })}
                   size='sm'
-                  className=''
+                  className='w-full'
                   variant='destructive'
                 >
                   {currentlyDeletingFile === file.id ? (
-                    <Loader2 className='' />
+                    <Loader2 className='h-4 w-4 animate-spin' />
                   ) : (
-                    <Trash className='' />
+                    <Trash className='h-4 w-4' />
                   )}
                 </Button>
               </div>
